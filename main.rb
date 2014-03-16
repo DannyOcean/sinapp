@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'sinatra'
-require 'sinatra/flash'
 require './lab_1_1'
 require './lab_1_2'
 require './lab_1_3'
