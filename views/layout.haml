@@ -5,11 +5,7 @@
     %title Kondratenko
     %link{ rel: "stylesheet", href: "/css/style.css" }
   %body
-    .nav
-      %a(href='/') Home
-      %a(href='/lab1') Lab #1
-      %a(href='/lab2') Lab #2
-      %a(href='/lab3') Lab #3
+    =haml :navbar, layout: false
     .content
       = yield
       %h6 Performed by Kondratenko Denis, IKIT 417, NAU, 2014

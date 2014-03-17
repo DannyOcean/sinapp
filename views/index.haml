@@ -5,10 +5,6 @@
     %title Kondratenko
     %link{ rel: "stylesheet", href: "/css/style.css" }
   %body
-    .nav
-      %a(href='/') Home
-      %a(href='/lab1') Lab #1
-      %a(href='/lab2') Lab #2
-      %a(href='/lab3') Lab #3
+    =haml :navbar, layout: false
     .index
       Hello everyone. This web app was created by ukrainian student Kondratenko Denis (me), to demonstrate the result of my laboratory works on subject "Informational security". This web application is running on sinatra framework, which is implemented with ruby language : )

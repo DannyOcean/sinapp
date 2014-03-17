@@ -3,18 +3,21 @@
 body { background-image : url('/images/4.jpg'); }
 
 .nav {
-  text-align : right;
+  margin-top: 5px;
   margin-bottom : 10px;
-  font-size : 1.2em;
+  margin-right: 5px;
+
+  text-align : right;
   letter-spacing : -1px;
+  font-size : 1.2em;
   font-family : 'Lucida Console', Monaco, Helvetica;
 }
 
 .content {
-  text-align : center;
   width : 500px;
   margin-left : 32%;
-  font-family : Symbol, Serif;
+  text-align : center;
+  font-family : Serif;
 }
 
 .index {
@@ -22,7 +25,7 @@ body { background-image : url('/images/4.jpg'); }
   margin-top : 10%;
   margin-left : 18%;
   font-size : 1.1em;
-  font-family : Symbol, Serif;
+  font-family : Serif;
 }
 
 a:hover {
@@ -43,7 +46,7 @@ h3 {
 
 label {
   position : relative;
-  left : -188px;
+  left : -195px;
 }
 
 .key {
@@ -51,10 +54,13 @@ label {
   left : -200px;
 }
 
+input { margin: 5px 5px 0px 5px; }
+
 button {
   color: #003C8C;
   border-radius: 6px;
   border-color: #003C8C;
+  margin: 5px 5px 0px 5px;
 
   background: #7ed3ea; /* Old browsers */
   background: -moz-linear-gradient(top,  #7ed3ea 0%, #0caeff 68%, #509efc 100%); /* FF3.6+ */
