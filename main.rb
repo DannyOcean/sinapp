@@ -6,7 +6,7 @@ require './lab_1_3'
 
 get '/stylesheets/:name.css' do
  content_type 'text/css', :charset => 'utf-8'
- sass(:"stylesheets/#{params[:name]}")
+ scss(:"stylesheets/#{params[:name]}")
 end
 
 get '/' do
