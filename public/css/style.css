@@ -1,3 +1,5 @@
+@import url('reset.css');
+
 body { background-image : url('/images/4.jpg'); }
 
 .nav {
@@ -12,7 +14,7 @@ body { background-image : url('/images/4.jpg'); }
   text-align : center;
   width : 500px;
   margin-left : 32%;
-  font-family : Symbol;
+  font-family : Symbol, Serif;
 }
 
 .index {
@@ -20,7 +22,7 @@ body { background-image : url('/images/4.jpg'); }
   margin-top : 10%;
   margin-left : 18%;
   font-size : 1.1em;
-  font-family : Symbol;
+  font-family : Symbol, Serif;
 }
 
 a:hover {
@@ -41,12 +43,12 @@ h3 {
 
 label {
   position : relative;
-  left : -194px;
+  left : -188px;
 }
 
 .key {
   position : relative;
-  left : -205px;
+  left : -200px;
 }
 
 button {

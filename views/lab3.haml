@@ -4,12 +4,12 @@
   %p
     %label{ :for=> 'phrase_id' } Phrase
     %br/
-    %textarea{ id: 'phrase_id', name: 'phrase', rows: '5', cols: '60', placeholder: "Enter your phrase" }
+    %textarea{ id: 'phrase_id', name: 'phrase', rows: '5', cols: '50', placeholder: "Enter your phrase" }
     %br/
     %br/
     %label.key{ for: 'key_id' } Key
     %br/
-    %input{ id: 'key_id', name: 'key', type: 'text', placeholder: 'Enter the key', size: '43'}
+    %input{ id: 'key_id', name: 'key', type: 'text', placeholder: 'Enter the key', size: '52'}
   %input{ type: 'radio', name: 'action', value: 'encrypt'} Encrypt
   %input{ type: 'radio', name: 'action', value: 'decrypt'} Decrypt
   %button{ type: "submit" } Submit
@@ -17,6 +17,6 @@
     %label{ :for=> 'result_id' } Result
     %br/
     - if @result.nil?
-      %textarea{ id: 'result_id', name: 'result', rows: '6', cols: '60', placeholder: "Here you will see the result", readonly: '' }
+      %textarea{ id: 'result_id', name: 'result', rows: '6', cols: '50', placeholder: "Here you will see the result", readonly: '' }
     - else
-      %textarea{ id: 'result_id', name: 'result', rows: '6', cols: '60', readonly: 'readonly'}= @result
+      %textarea{ id: 'result_id', name: 'result', rows: '6', cols: '50', readonly: 'readonly'}= @result
