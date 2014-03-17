@@ -1,54 +1,53 @@
-@import url("reset.css");
-
-body {
-  background-image: url('/images/4.jpg');
-}
+body { background-image : url('/images/4.jpg'); }
 
 .nav {
-  text-align: right;
-  margin-bottom: 10px;
-
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  font-family: 'Lucida Console', Monaco, Helvetica;
+  text-align : right;
+  margin-bottom : 10px;
+  font-size : 1.2em;
+  letter-spacing : -1px;
+  font-family : 'Lucida Console', Monaco, Helvetica;
 }
 
 .content {
-  text-align: center;
-  width: 500px;
-  margin-left: 32%;
-
-  font-family: Symbol;
+  text-align : center;
+  width : 500px;
+  margin-left : 32%;
+  font-family : Symbol;
 }
 
 .index {
-  width: 900px;
-  margin-top: 10%;
-  margin-left: 18%;
-
-  font-size: 1.1em;
-  font-family: Symbol;
+  width : 900px;
+  margin-top : 10%;
+  margin-left : 18%;
+  font-size : 1.1em;
+  font-family : Symbol;
 }
 
-a:hover { 
-  font-size: 0.9em;
-  text-decoration: none; 
+a:hover {
+  font-size : 0.9em;
+  text-decoration : none;
 }
 
-a { 
-  margin-left: 5px; 
-  margin-right: 5px;  
-  text-decoration: none; 
+a {
+  margin-left : 5px;
+  margin-right : 5px;
+  text-decoration : none;
 }
 
 h3 {
-  font-size: 1.2em;
-  font-family: 'Lucida Console', Monaco, Monospace;
+  font-size : 1.2em;
+  font-family : 'Lucida Console', Monaco, Monospace;
 }
 
-label { position: relative; left: -194px; }
-.key  { position: relative; left: -205px; }
+label {
+  position : relative;
+  left : -194px;
+}
 
+.key {
+  position : relative;
+  left : -205px;
+}
 
 button {
   color: #003C8C;
