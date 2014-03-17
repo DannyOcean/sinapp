@@ -1,0 +1,67 @@
+@import url('reset.css');
+
+body { background-image : url('/images/4.jpg'); }
+
+.nav {
+  text-align : right;
+  margin-bottom : 10px;
+  font-size : 1.2em;
+  letter-spacing : -1px;
+  font-family : 'Lucida Console', Monaco, Helvetica;
+}
+
+.content {
+  text-align : center;
+  width : 500px;
+  margin-left : 32%;
+  font-family : Symbol, Serif;
+}
+
+.index {
+  width : 900px;
+  margin-top : 10%;
+  margin-left : 18%;
+  font-size : 1.1em;
+  font-family : Symbol, Serif;
+}
+
+a:hover {
+  font-size : 0.9em;
+  text-decoration : none;
+}
+
+a {
+  margin-left : 5px;
+  margin-right : 5px;
+  text-decoration : none;
+}
+
+h3 {
+  font-size : 1.2em;
+  font-family : 'Lucida Console', Monaco, Monospace;
+}
+
+label {
+  position : relative;
+  left : -188px;
+}
+
+.key {
+  position : relative;
+  left : -200px;
+}
+
+button {
+  color: #003C8C;
+  border-radius: 6px;
+  border-color: #003C8C;
+
+  background: #7ed3ea; /* Old browsers */
+  background: -moz-linear-gradient(top,  #7ed3ea 0%, #0caeff 68%, #509efc 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7ed3ea), color-stop(68%,#0caeff), color-stop(100%,#509efc)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #7ed3ea 0%,#0caeff 68%,#509efc 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #7ed3ea 0%,#0caeff 68%,#509efc 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #7ed3ea 0%,#0caeff 68%,#509efc 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #7ed3ea 0%,#0caeff 68%,#509efc 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7ed3ea', endColorstr='#509efc',GradientType=0 ); /* IE6-9 */
+}

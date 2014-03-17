@@ -4,11 +4,6 @@ require './lab_1_1'
 require './lab_1_2'
 require './lab_1_3'
 
-get '/stylesheets/:name.css' do
- content_type 'text/css', :charset => 'utf-8'
- scss(:"stylesheets/#{params[:name]}")
-end
-
 get '/' do
   haml :index, layout: false
 end
