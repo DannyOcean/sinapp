@@ -82,5 +82,4 @@ class Gamma
     end
     @mapped_gamma = phrase_chars.join('')
   end
-
 end
