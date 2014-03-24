@@ -58,7 +58,7 @@ class Cipher
     phrase_chars = @phrase.chars
     phrase_chars.each_index do |i|
       key_char = @key.chars[k]
-      unless phrase_chars[i] =~ /[^\w]|[\s]/    #игнорируем пробелы и все что не являеться буквой
+      unless phrase_chars[i] =~ /[^\w]|[\d]|[\s]/    #игнорируем пробелы и все что не являеться буквой
         phrase_chars[i] = key_char
         k += 1
       end
@@ -73,7 +73,7 @@ class Cipher
     alphabet = @vigenere_table["alphabet"]                                        # алфавит без ключа
     encrypted_phrase_chars = @mapped_phrase.chars
     encrypted_phrase_chars.each_with_index do |char, i|
-      unless char =~ /[^\w]|[\s]/
+      unless char =~ /[^\w]|[\d]|[\s]/
         target = @phrase.chars[i]                                                 # буква которую заменяем 
         unless @decrypt_flag
           target_index = @vigenere_table['alphabet'].index("#{target}")           # индекс буквы на которую будем заменяь в адфавите для подмены

@@ -24,7 +24,7 @@ class Gamma
     map_gamma
     encrypted_phrase = []
     @mapped_gamma.chars.each_with_index do |char, i|
-      unless char =~ /[^\w]|[\s]/
+      unless char =~ /[^\w]|[\d]|[\s]/
         si = @alphabet.index @phrase[i]
         gi  = @alphabet.index char
         sum = si + gi 
@@ -48,7 +48,7 @@ class Gamma
     map_gamma
     decrypted_phrase = []
     @mapped_gamma.chars.each_with_index do |char, i|
-      unless char =~ /[^\w]|[\s]/
+      unless char =~ /[^\w]|[\d]|[\s]/
         ri = @alphabet.index @phrase[i]
         gi = @alphabet.index char
         size = @alphabet.size - 1
@@ -74,7 +74,7 @@ class Gamma
     phrase_chars = @phrase.chars
     phrase_chars.each_index do |i|
       gamma_char = @gamma.chars[k]
-      unless phrase_chars[i] =~ /[^\w]|[\s]/
+      unless phrase_chars[i] =~ /[^\w]|[\d]|[\s]/
         phrase_chars[i] = gamma_char
         k += 1
       end
