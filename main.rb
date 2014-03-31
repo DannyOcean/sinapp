@@ -3,6 +3,7 @@ require 'sinatra'
 require './lab_1_1'
 require './lab_1_2'
 require './lab_1_3'
+require './lab_1_4'
 
 get '/' do
   haml :index, layout: false
@@ -53,4 +54,20 @@ post '/lab3' do
     @result = @gamma.decrypted_phrase
   end
   haml :lab3, locals: { result: @result }    
+end
+
+get '/lab4' do
+  haml :lab4
+end
+
+post '/lab4' do
+  bc = BlockCipher.new
+  if params[:action] == 'encrypt'
+    bc.encode(params[:phrase])
+    @result = bc.encoded_phrase
+  else
+    bc.decode(params[:phrase])
+    @result = bc.decoded_phrase
+  end
+  haml :lab4, locals: { result: @result }
 end
