@@ -10,64 +10,64 @@ get '/' do
 end
 
 get '/lab1' do
-  haml :lab1
+  haml :lab1, locals: { action: "/lab1" }
 end
 
 post '/lab1' do
-  @cipher = Cipher.new
+  cipher = Cipher.new
   if params[:action] == 'encrypt'
-    @cipher.encrypt(params[:phrase], params[:key])
+    cipher.encrypt(params[:phrase], params[:key])
   else
-    @cipher.decrypt(params[:phrase], params[:key])
+    cipher.decrypt(params[:phrase], params[:key])
   end
-  @result = @cipher.sub_phrase
-  haml :lab1, locals: { result: @result }
+  @result = cipher.sub_phrase
+  haml :lab1, locals: { result: @result, action: "/lab1" }
 end
 
 get '/lab2' do
-  haml :lab2
+  haml :lab2, locals: { action: "/lab2"}
 end
 
 post '/lab2' do
-  @permutator = Permutator.new
+  permutator = Permutator.new
   if params[:action] == 'encrypt'
-    @permutator.encode(params[:phrase])
-    @result = @permutator.encoded_phrase
+    permutator.encode(params[:phrase])
+    @result = permutator.encoded_phrase
   else
-    @permutator.decode(params[:phrase])
-    @result = @permutator.decoded_phrase
+    permutator.decode(params[:phrase])
+    @result = permutator.decoded_phrase
   end
-  haml :lab2, locals: { result: @result }
+  haml :lab2, locals: { result: @result, action: "/lab2" }
 end
 
 get '/lab3' do
-  haml :lab3
+  haml :lab3, locals: { action: "/lab3" }
 end
 
 post '/lab3' do
-  @gamma = Gamma.new
+  gamma = Gamma.new
   if params[:action] == 'encrypt'
-    @gamma.encrypt(params[:phrase], params[:key])
-    @result = @gamma.encrypted_phrase
+    gamma.encrypt(params[:phrase], params[:key])
+    @result = gamma.encrypted_phrase
   else
-    @gamma.decrypt(params[:phrase], params[:key])
-    @result = @gamma.decrypted_phrase
+    gamma.decrypt(params[:phrase], params[:key])
+    @result = gamma.decrypted_phrase
   end
-  haml :lab3, locals: { result: @result }    
+  haml :lab3, locals: { result: @result, action: "/lab3" }    
 end
 
 get '/lab4' do
-  haml :lab4
+  haml :lab4, locals: { action: "/lab4" }
 end
 
 post '/lab4' do
   bc = BlockCipher.new
   if params[:action] == 'encrypt'
-    bc.encode(params[:phrase])
-    @result = bc.encoded_phrase
+    bc.encrypt(params[:phrase], params[:key])
+    @result = bc.encrypted_phrase
   else
-    bc.decode(params[:phrase])
-    @result = bc.decoded_phrase
+    bc.decrypt(params[:phrase], params[:key])
+    @result = bc.decrypted_phrase
   end
-  haml :lab4, locals: { result: @result }
+  haml :lab4, locals: { result: @result, action: "/lab4" }
 end
