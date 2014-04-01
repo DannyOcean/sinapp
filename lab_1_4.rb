@@ -1,14 +1,15 @@
 #laboratory work #4
 #performed by Kondratenko Denis, ICIT 417
+require './lab_1_3'
 
 class BlockCipher
-	attr_reader :encrypted_phrase, :decrypted_phrase, :blocks
-  
+  attr_reader :encrypted_phrase, :decrypted_phrase, :blocks
+
   def initialize 
     @gamma = Gamma.new
   end
 
-	def encrypt(phrase, key)
+  def encrypt(phrase, key)
     blockinate phrase
     @blocks.each_with_index do |block, i|
       unless i.odd?
@@ -16,11 +17,11 @@ class BlockCipher
         @blocks[i] = reverse_bin @blocks[i]
         @blocks[i] = bin_to_char @blocks[i]
       else
-        @blocks[i] = @gamma.encrypt(block, key)
+        @blocks[i] = @gamma.encrypt(block, key)        
       end
     end
     @encrypted_phrase = @blocks.join('')
-	end
+  end
 
   def decrypt(phrase, key)
     blockinate phrase
@@ -30,7 +31,7 @@ class BlockCipher
         @blocks[i] = reverse_bin @blocks[i]
         @blocks[i] = unbinarize @blocks[i]
       else
-        @blocks[i] = @gamma.decrypt(block, key) 
+        @blocks[i] = @gamma.decrypt(block, key)
       end
     end
     @decrypted_phrase = @blocks.join('')
@@ -60,7 +61,7 @@ class BlockCipher
   def binarize(string)
     binarized_str = string.bytes
     binarized_str.each_index do |i|
-      binarized_str[i] = binarized_str[i].to_s(2)
+      binarized_str[i] = binarized_str[i].to_s(2).insert(0, '0')
     end
     binarized_str
   end
@@ -75,7 +76,7 @@ class BlockCipher
   end
 
   #substitute 1 with 0 and vise versa in the given block
-  #returns array with strings
+  #returns block
   def reverse_bin(block)
     block.each_with_index do |bin, i|
       reversed = bin.chars
@@ -99,7 +100,7 @@ class BlockCipher
     end
     block
   end
-
+  
   #replace unicode chars with binary number that corresponds its ascii code
   #return block with binaries
   def unicode_to_bin(block)
