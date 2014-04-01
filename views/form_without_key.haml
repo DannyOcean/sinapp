@@ -2,14 +2,17 @@
   %p
     %label{ for: 'phrase_id' } Phrase
     %br/
-    %textarea{ id: 'phrase_id', name: 'phrase', rows: '5', cols: '60', placeholder: "Enter your phrase" }
-  %input{ type: 'radio', name: 'action', value: 'encrypt'} Encrypt
-  %input{ type: 'radio', name: 'action', value: 'decrypt'} Decrypt
+    - if @result.nil?
+      %textarea.width.height{ id: 'phrase_id', name: 'phrase', placeholder: "Enter your phrase" }
+    - else
+      %textarea.width.height{ id: 'phrase_id', name: 'phrase' }= params[:phrase]
+  %input{ type: 'radio', name: 'action', value: 'encrypt' } Encrypt
+  %input{ type: 'radio', name: 'action', value: 'decrypt' } Decrypt
   %button{ type: "submit" } Submit
   %p
     %label{ :for=> 'result_id' } Result
     %br/
     - if @result.nil?
-      %textarea{ id: 'result_id', name: 'result', rows: '8', cols: '60', placeholder: "Here you will see the result", readonly: '' }
+      %textarea.width.height{ id: 'result_id', name: 'result', placeholder: "Here you will see the result", readonly: '' }
     - else
-      %textarea{ id: 'result_id', name: 'result', rows: '8', cols: '60', readonly: 'readonly'}= @result
+      %textarea.width.height{ id: 'result_id', name: 'result', readonly: 'readonly'}= @result

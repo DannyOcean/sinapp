@@ -30,7 +30,7 @@ class BlockCipher
         @blocks[i] = reverse_bin @blocks[i]
         @blocks[i] = unbinarize @blocks[i]
       else
-        @blocks[i] = @gamma.decrypt(block, key)
+        @blocks[i] = @gamma.decrypt(block, key) 
       end
     end
     @decrypted_phrase = @blocks.join('')

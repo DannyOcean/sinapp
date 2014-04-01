@@ -28,6 +28,11 @@ body { background-image : url('/images/4.jpg'); }
   font-family : Serif;
 }
 
+.width { width: 420px; }
+.height { height: 120px; }
+
+textarea { width: 400px; }
+
 a:hover {
   font-size : 0.9em;
   text-decoration : none;
