@@ -1,6 +1,6 @@
 #laboratory work #4
 #performed by Kondratenko Denis, ICIT 417
-require './lab_1_3'
+require './labs/lab_1_3'
 
 class BlockCipher
   attr_reader :encrypted_phrase, :decrypted_phrase, :blocks
@@ -50,7 +50,7 @@ class BlockCipher
       block = phrase[i..j]
       blocks << block
       i = j + 1
-      j += 9
+      j += 8
     end
     @blocks = blocks
   end

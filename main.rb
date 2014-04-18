@@ -1,9 +1,10 @@
 require 'rubygems'
 require 'sinatra'
-require './lab_1_1'
-require './lab_1_2'
-require './lab_1_3'
-require './lab_1_4'
+require './labs/lab_1_1'
+require './labs/lab_1_2'
+require './labs/lab_1_3'
+require './labs/lab_2_1'
+require './labs/lab_2_2'
 
 get '/' do
   haml :index, layout: false
@@ -70,4 +71,20 @@ post '/lab4' do
     @result = bc.decrypted_phrase
   end
   haml :lab4, locals: { result: @result, action: "/lab4" }
+end
+
+get '/lab5' do
+  haml :lab5, locals: { action: "/lab5" }
+end
+
+post '/lab5' do
+  f = FeistelCipher.new
+  if params[:action] == 'encrypt'
+    f.encrypt(params[:phrase], params[:key])
+    @result = f.encrypted_phrase
+  else
+    f.decrypt(params[:phrase], params[:key])
+    @result = f.decrypted_phrase
+  end
+  haml :lab5, locals: { result: @result, action: "/lab5" }
 end
