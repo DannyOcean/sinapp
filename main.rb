@@ -1,10 +1,6 @@
 require 'rubygems'
 require 'sinatra'
-require './labs/lab_1_1'
-require './labs/lab_1_2'
-require './labs/lab_1_3'
-require './labs/lab_2_1'
-require './labs/lab_2_2'
+Dir["#{File.dirname(__FILE__)}/labs/**/*.rb"].each { |f| load(f) }
 
 get '/' do
   haml :index, layout: false
@@ -87,4 +83,20 @@ post '/lab5' do
     @result = f.decrypted_phrase
   end
   haml :lab5, locals: { result: @result, action: "/lab5" }
+end
+
+get '/lab6' do
+  haml :lab6, locals: { action: "/lab6" }
+end
+
+post '/lab6' do
+  d = DES.new
+  if params[:action] == 'encrypt'
+    d.encrypt(params[:phrase], params[:key])
+    @result = d.encrypted_phrase
+  else
+    d.decrypt(params[:phrase], params[:key])
+    @result = d.decrypted_phrase
+  end
+  haml :labd, locals: { result: @result, action: "/lab6" }
 end
