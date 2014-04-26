@@ -98,5 +98,5 @@ post '/lab6' do
     d.decrypt(params[:phrase], params[:key])
     @result = d.decrypted_phrase
   end
-  haml :labd, locals: { result: @result, action: "/lab6" }
+  haml :lab6, locals: { result: @result, action: "/lab6" }
 end
