@@ -1,12 +1,15 @@
 # laboratory work #2.2
 # performed by Kondratenko Denis, ICIT 417
 # All rights reserved (c)
+require 'openssl'
+require 'base64'
 
 class FeistelCipher
   attr_reader :encrypted_phrase, :decrypted_phrase, :blocks
   ROUNDS = 16
 
   def encrypt(phrase, key)
+    phrase = phrase.codepoints.to_a
     blockinate phrase
     @blocks.each_with_index do |block, i|
       left  = block[0]
@@ -17,12 +20,13 @@ class FeistelCipher
         left  = tmp
       end
       @blocks[i] = left + right
-      @blocks[i] = characterize @blocks[i]
+      @blocks[i] = @blocks[i].pack "U*"
     end
-    @encrypted_phrase = @blocks.join('')
+    @encrypted_phrase =  @blocks.join
   end
 
   def decrypt(phrase, key)
+    phrase = phrase.codepoints.to_a
     blockinate phrase
     @blocks.each_with_index do |block, i|
       left  = block[0]
@@ -33,12 +37,15 @@ class FeistelCipher
         right = tmp
       end
       @blocks[i] = left + right
-      @blocks[i] = characterize @blocks[i]
+      @blocks[i] = @blocks[i].pack "U*"
     end
-    @decrypted_phrase = @blocks.join('')
+    @decrypted_phrase = @blocks.join
   end
 
   private
+
+  # performing bit xor for each bit of left and right blocks
+  # returns arra of result of xor operation
   def xor(left, right)
     res = Array.new
     0.upto(3) do |i|
@@ -48,32 +55,28 @@ class FeistelCipher
     res
   end
 
-  # works with strings that consists only of 1 char :D
-  # optimal integer radix is 3 (numbers from 0..999)
+  # works with key length from 16 bits
   def f_enc(block, key)
-    unless key.class == String
-      block.map { |i| i.odd? ? i ^ key : i ^ ROUNDS }
-    else
-      key = key.bytes.join.to_i
-      block.map { |i| i.odd? ? i ^ key : i ^ ROUNDS }
-    end
+    key = key.bytes
+    k = []
+    k << key.first << key.last
+    k = k.join.to_i
+    block.map { |bit| bit.odd? ? bit ^ k : bit ^ (ROUNDS ^ k) }
   end
 
-  # works with strings that consists only of 1 char :D
-  # optimal integer radix is 3 (numbers from 0..999)
+  # works with key length from 16 bits
   def f_dec(block, key)
-    unless key.class == String
-      block.map { |i| i.even? ? i ^ key : i ^ ROUNDS }
-    else
-      key = key.bytes.join.to_i
-      block.map { |i| i.even? ? i ^ key : i ^ ROUNDS }
-    end
+    key = key.bytes
+    k = []
+    k << key.first << key.last
+    k = k.join.to_i
+    block.map { |bit| bit.odd? ? bit ^ k : bit ^ (ROUNDS ^ k) }
   end
 
   # return 3d array of binary nums (array of blocks with subblocks) 
   # [ [[sub], [sub]], [[sub], [sub]] ]
-  def blockinate(phrase)
-    tmp = phrase.bytes.each_slice(4).to_a
+  def blockinate(bytes)
+    tmp = bytes.each_slice(4).to_a
     if tmp.last.size < 4
       n = 4 - tmp.last.size
       n.times { |n| tmp.last << 0 }
@@ -82,13 +85,5 @@ class FeistelCipher
     if @blocks.last.size == 1
       @blocks.last << [0] * 4
     end
-  end
-
-  def characterize(block)
-    ch = block
-    ch.each_index do |i|
-      ch[i] = ch[i].chr.unpack("C*").pack("U*")
-    end
-    ch.join('')
   end
 end
