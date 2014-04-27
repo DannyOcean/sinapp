@@ -14,7 +14,7 @@ class FeistelCipher
       left  = block[0]
       right = block[1]
       ROUNDS.times do
-        tmp   = xor(f_enc(left, key), right)
+        tmp   = xor(crypt(left, key), right)
         right = left
         left  = tmp
       end
@@ -31,7 +31,7 @@ class FeistelCipher
       left  = block[0]
       right = block[1]
       ROUNDS.times do
-        tmp   = xor(left, f_dec(right, key))
+        tmp   = xor(left, crypt(right, key))
         left  = right
         right = tmp
       end
@@ -55,16 +55,7 @@ class FeistelCipher
   end
 
   # works with key length from 16 bits
-  def f_enc(block, key)
-    key = key.bytes
-    k = []
-    k << key.first << key.last
-    k = k.join.to_i
-    block.map { |bit| bit.odd? ? bit ^ k : bit ^ (ROUNDS ^ k) }
-  end
-
-  # works with key length from 16 bits
-  def f_dec(block, key)
+  def crypt(block, key)
     key = key.bytes
     k = []
     k << key.first << key.last
