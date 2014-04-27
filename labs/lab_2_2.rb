@@ -2,7 +2,6 @@
 # performed by Kondratenko Denis, ICIT 417
 # All rights reserved (c)
 require 'openssl'
-require 'base64'
 
 class FeistelCipher
   attr_reader :encrypted_phrase, :decrypted_phrase, :blocks
