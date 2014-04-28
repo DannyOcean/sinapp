@@ -90,7 +90,7 @@ get '/lab6' do
 end
 
 post '/lab6' do
-  d = DES.new
+  d = DES2.new
   if params[:action] == 'encrypt'
     d.encrypt(params[:phrase], params[:key])
     @result = d.encrypted_phrase

@@ -1,3 +1,7 @@
+# => 
+# => DOESNT WORK (encodings problems)
+# => 
+
 #laboratory work #4
 #performed by Kondratenko Denis, ICIT 417
 require './labs/lab_1_3'
@@ -49,8 +53,8 @@ class BlockCipher2
   #following method devide data on blocks of 8 bytes size each
   def blockinate(data)
     blocks = []
-    i, j = 0, BLOCK_SIZE
-    n = data.size / BLOCK_SIZE
+    i, j = 0, BLOCK_SIZE - 1
+    n = (data.size / BLOCK_SIZE) + 1
     n.times do
       block = data[i..j]
       blocks << block
@@ -59,7 +63,7 @@ class BlockCipher2
     end
     if blocks.last.size < BLOCK_SIZE
       n = BLOCK_SIZE - blocks.last.size
-      n.times { blocks.last << '0' }
+      n.times { blocks.last << ' ' }
     end
     @blocks = blocks
   end

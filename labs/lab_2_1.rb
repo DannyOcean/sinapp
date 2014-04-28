@@ -4,6 +4,7 @@ require './labs/lab_1_3'
 
 class BlockCipher
   attr_reader :encrypted_phrase, :decrypted_phrase, :blocks
+  BLOCK_SIZE = 8
 
   def initialize 
     @gamma = Gamma.new
@@ -15,12 +16,12 @@ class BlockCipher
       unless i.odd?
         @blocks[i] = binarize block
         @blocks[i] = reverse_bin @blocks[i]
-        @blocks[i] = bin_to_char @blocks[i]
+        @blocks[i] = bin_to_unicode @blocks[i]
       else
         @blocks[i] = @gamma.encrypt(block, key)        
       end
     end
-    @encrypted_phrase = @blocks.join('')
+    @encrypted_phrase = @blocks.join
   end
 
   def decrypt(phrase, key)
@@ -34,45 +35,27 @@ class BlockCipher
         @blocks[i] = @gamma.decrypt(block, key)
       end
     end
-    @decrypted_phrase = @blocks.join('')
+    @decrypted_phrase = @blocks.join
   end
 
   private
 
-  #following method devide phrase on blocks of 8 bytes size each
-  #except the last one.
-  #1 char = 1 byte. block = 64 bits = 8 bytes.
-  def blockinate(phrase)
+  #following method devide data on blocks of 8 bytes size each
+  def blockinate(data)
     blocks = []
-    i, j = 0, 7
-    n = phrase.size / 8
+    i, j = 0, BLOCK_SIZE - 1
+    n = (data.size / BLOCK_SIZE) + 1
     n.times do
-      block = phrase[i..j]
+      block = data[i..j]
       blocks << block
       i = j + 1
-      j += 8
+      j += BLOCK_SIZE
+    end
+    if blocks.last.size < BLOCK_SIZE
+      n = BLOCK_SIZE - blocks.last.size
+      n.times { blocks.last << ' ' }
     end
     @blocks = blocks
-  end
-
-  #following method converts each char of the string 
-  #into binary number of its ascii code
-  #return array of binarized characters
-  def binarize(string)
-    binarized_str = string.bytes
-    binarized_str.each_index do |i|
-      binarized_str[i] = binarized_str[i].to_s(2).insert(0, '0')
-    end
-    binarized_str
-  end
-
-  #replace binary numbers with characters from ascii table
-  #return string
-  def unbinarize(block)
-    block.each_index do |i|
-      block[i] = block[i].to_i(2).chr
-    end
-    block.join('')
   end
 
   #substitute 1 with 0 and vise versa in the given block
@@ -92,28 +75,28 @@ class BlockCipher
     block
   end
 
+  #following method converts each char of the string 
+  #into binary number of its ascii code
+  #return array of binarized characters
+  def binarize(string)
+    string.codepoints.to_a.map { |byte| byte.to_s(2).insert(0, '0') }
+  end
+
+  #replace binary numbers with characters from ascii table
+  #return string
+  def unbinarize(block)
+    block.map { |byte| byte.to_i(2).chr }.join
+  end
+
   #replace binary number with its char equivalent from ascii table
   #reurn block with characters
-  def bin_to_char(block)
-    block.each_with_index do |bin, i|
-      block[i] = unescape(bin.to_i(2).chr)
-    end
-    block
+  def bin_to_unicode(block)
+    block.map { |bin| bin.to_i(2).chr.unpack("C*").pack("U*") }
   end
   
   #replace unicode chars with binary number that corresponds its ascii code
   #return block with binaries
   def unicode_to_bin(block)
-    str = block.chars
-    str.each_index do |i|
-      str[i] = str[i].ord.to_s(2)
-    end
-    block = str
+    block.codepoints.to_a.map { |byte| byte.to_s(2) }
   end
-
-  #unescapes "\x" in unicode charaters in string
-  def unescape(str)
-    str.unpack("C*").pack("U*")
-  end
-
 end
